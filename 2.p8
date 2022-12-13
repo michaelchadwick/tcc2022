@@ -2,11 +2,11 @@ pico-8 cartridge // http://www.pico-8.com
 version 38
 __lua__
 -- tiny code christmas
--- day 1: make xmas scene
+-- day 2: make it snow (better)
 
 function _init()
   cls()
-  print("hello tcc day 1!",32,0,12)
+  print("hello tcc day 2!",32,0,12)
   print("press z/x to exit",30,6,12)
 end
 
@@ -74,9 +74,43 @@ function draw_tree()
   spr(10,60,26)
 end
 
+function draw_snow()
+  for i=1,40 do
+    randx=rnd(160)
+    randy=rnd(160)
+    randz=flr(rnd(1000))
+    clr=pget(randx,randy)
+    if clr != 3 then
+      if clr != 4 then
+        if clr != 7 then
+          if clr != 11 then
+            if clr != 12 then
+              if randz % 1 == 0 then
+                pset(randx,randy,7)
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+function remove_snow()
+  for i=0,160 do
+    for j=0,160 do
+      if pget(i,j) == 7 then
+        pset(i,j,0)
+      end
+    end
+  end
+end
+
 function _draw()
+  remove_snow()
   draw_grnd()
   draw_tree()
+  draw_snow()
 end
 
 function _update()
