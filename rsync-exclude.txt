@@ -1,1 +1,10 @@
+.DS_Store
+.git
+.gitignore
 *.p8
+assets/audio
+LICENSE.md
+README.md
+Rakefile
+rsync-exclude.txt
+TODO.md
