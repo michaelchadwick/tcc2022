@@ -1,8 +1,8 @@
 pico-8 cartridge // http://www.pico-8.com
-version 38
+version 39
 __lua__
 -- tiny code christmas
--- day 2: make it snow (better)
+-- day 2: snow time() like the present
 
 function _init()
   cls()

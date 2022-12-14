@@ -1,8 +1,8 @@
 pico-8 cartridge // http://www.pico-8.com
-version 38
+version 39
 __lua__
 -- tiny code christmas
--- day 1: make xmas scene
+-- day 1: making shapes
 
 function _init()
   cls()
