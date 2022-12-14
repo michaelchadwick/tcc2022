@@ -23,25 +23,35 @@ __lua__
 
 clrs = {8,9,10,11,12,13,14,15}
 p_offset = 0
+effect = 0
+dir = 128
 
 function _init()
   cls(1)
   last = time()
-  rainbow()
 end
 
 function print_msg()
-  rectfill(1,1,126,15,5)
-  print("hello tcc day 3!",34,3,0)
-  print("hello tcc day 3!",33,2,7)
-  print("press z/x to exit",31,10,0)
-  print("press z/x to exit",31,9,7)
+  rectfill(19,1,108,22,5)
+  
+  print("hello tcc day 3!",33,3,0)
+  print("hello tcc day 3!",32,2,7)
+  
+  print("z: chg fx, x: exit",28,10,0)
+  print("z: chg fx, x: exit",27,9,7)
+
+  print("< / >: chg rainbow dir",21,17,0)
+  print("< / >: chg rainbow dir",20,16,7)
 end
 
-function rainbow()
+function draw_rainbow()
+  p_offset += 1
+	 if p_offset > count(clrs) then
+    p_offset = 0
+	 end
   clr_index = p_offset
-  for i=0,128 do
-    for j=0,128 do
+  for i=0,dir do
+    for j=0,dir do
       if clr_index > count(clrs)-1 then
         clr_index = 0
       end
@@ -51,17 +61,48 @@ function rainbow()
   end
 end
 
-function _draw()
-	p_offset += 1
-	if p_offset > count(clrs) then
-	  p_offset = 0
-	end
-	rainbow()
-	print_msg()
+function draw_rand_pixels()
+  pset(rnd(128),rnd(128),rnd(16))
 end
 
-function _update()
-  if (btnp(4) or btnp(5)) then
+function draw_effect()
+  if effect == 0 then
+    draw_rand_pixels()
+  elseif effect == 1 then
+    draw_rainbow()
+  end
+end
+
+function change_dir()
+  dir -= 1
+  if dir < 126 then
+    dir = 128
+  end
+end
+
+function switch_effect()
+  cls(1)
+  if effect == 0 then
+    effect = 1
+  else
+    effect = 0
+  end
+end
+
+function _draw()
+	 draw_effect()
+	 print_msg()
+end
+
+function _update60()
+  if btnp(0) or btn(1) then
+    change_dir()
+  end
+  
+  if btnp(4) then
+    switch_effect()
+  end
+  if btnp(5) then
     cls()
     stop("have a nice day!")
   end
