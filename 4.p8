@@ -29,7 +29,7 @@ function print_msg()
  print("press z/x to exit",27,9,7)
 end
 
-function draw_color()
+function draw_sin()
  for y=cy,(max_y+cy) do
   for x=cx,(max_x+cx) do
    if y>127 then y=y%128 end
@@ -70,7 +70,7 @@ function check_btns()
 end
 
 function _draw()
- draw_color()
+ draw_sin()
  --print_msg()
 end
 
