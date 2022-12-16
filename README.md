@@ -35,3 +35,7 @@ Use sin() to create a "plasma" effect.
 ## Day 5 - Polar Express
 
 Create an animated tunnel effect using polar coordinates.
+
+* atan2()
+* sqrt()
+* [print pico8 glyphs](https://www.lexaloffle.com/bbs/?pid=39534)
