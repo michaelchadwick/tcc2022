@@ -5,29 +5,7 @@ __lua__
 --day 2: snow time() like the present
 --neb:https://neb.host/games/tcc/2022
 
-function print_header(y,num,strs)
-  str="tcc day "..num.."!"
-  strs=strs or {}
-
-  rectfill(8,0,117,7+(#strs*7),5)
-
-  print(str,hctr(str),y-0,0)
-  print(str,hctr(str),y-1,7)
-
-  for ci=1,#strs do
-    print(strs[ci],hctr(strs[ci]),y+(ci*7),0)
-    print(strs[ci],hctr(strs[ci]),y+((ci*7)-1),7)
-  end
-end
-
---https://pico-8.fandom.com/wiki/Centering_Text
-function hctr(s)
-  return 64-#s*2
-end
-
-function vctr(s)
-  return 61
-end
+snow={}
 
 function draw_grnd()
   rectfill(0,110,160,160,3)
@@ -93,40 +71,19 @@ function draw_tree()
   spr(10,60,26)
 end
 
-function gen_snow()
-  x=rnd(160)
-
-  spr(17,x,13)
-end
-
 function draw_snow()
-  for i=1,40 do
-    randx=rnd(160)
-    randy=rnd(160)
-    randz=flr(rnd(1000))
-    clr=pget(randx,randy)
-    if clr != 3 then
-      if clr != 4 then
-        if clr != 7 then
-          if clr != 11 then
-            if clr != 12 then
-              if randz % 1 == 0 then
-                pset(randx,randy,7)
-              end
-            end
-          end
-        end
-      end
-    end
-  end
-end
+  for s in all(snow) do
+    pset(s.x,s.y,7)
+    pset(s.x,s.y-1,6)
+    pset(s.x,s.y+1,6)
+    pset(s.x+1,s.y,6)
+    pset(s.x-1,s.y,6)
 
-function remove_snow()
-  for i=0,160 do
-    for j=0,160 do
-      if pget(i,j) == 7 then
-        pset(i,j,0)
-      end
+    s.y+=s.dy
+
+    if s.y>110 then
+      s.x=rnd(127)
+      s.y=0
     end
   end
 end
@@ -136,19 +93,25 @@ end
 ------------------
 function _init()
   cls()
-  print("hello tcc day 2!",32,0,12)
-  print("press z/x to exit",30,6,12)
+
+  for i=1,40 do
+    x=flr(rnd(127))
+    y=flr(rnd(100))
+
+    flake={x=x,y=y,dx=0,dy=1}
+
+    add(snow,flake)
+  end
 end
 
 function _draw()
+  cls()
+
+  draw_snow()
   draw_grnd()
   draw_tree()
 
-  remove_snow()
-  draw_snow()
-  --gen_snow()
-
-  print_header(2,2,{"press z/x to exit"})
+  print("2",124,122,7)
 end
 
 function _update()
@@ -166,8 +129,3 @@ __gfx__
 00700700003333330003333300003333000003330000003300000003000000000000077733333333003333000000000000000000000000000000000000000000
 00000000033333330033333300033333000033330000033300000033000000030000007733333333033333300000000000000000000000000000000000000000
 00000000bbbbbbbb03333333003333330003333300003333000003330000003300000773bbbbbbbb333333330000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00000000000770000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00000000000770000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

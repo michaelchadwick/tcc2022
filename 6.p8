@@ -41,21 +41,6 @@ function print_table(tbl)
   printh(str)
 end
 
-function print_header(y,num,strs)
-  str="tcc day "..num.."!"
-  strs=strs or {}
-
-  rectfill(8,0,117,7+(#strs*7),5)
-
-  print(str,hctr(str),y-0,0)
-  print(str,hctr(str),y-1,7)
-
-  for ci=1,#strs do
-    print(strs[ci],hctr(strs[ci]),y+(ci*7),0)
-    print(strs[ci],hctr(strs[ci]),y+((ci*7)-1),7)
-  end
-end
-
 --https://www.lexaloffle.com/bbs/?pid=114184#p
 function scale_text(str,x,y,c,scale)
   memcpy(0x4300,0x0,0x0200)
@@ -133,19 +118,6 @@ function check_btns()
   end
 end
 
-function reset()
-  cls(bg)
-end
-
---https://pico-8.fandom.com/wiki/Centering_Text
-function hctr(s)
-  return 64-#s*2
-end
-
-function vctr(s)
-  return 61
-end
-
 ------------------
 -- pico8 _funcs --
 ------------------
@@ -191,7 +163,7 @@ end
 function _draw()
   draw_scroller()
 
-  print_header(2,6,{"z:reset x:exit"})
+  print("6",124,122,7)
 
   debug_str='smod:'..smod
   debug_str=debug_str..', hmod:'..hmod

@@ -30,30 +30,6 @@ pal4={0,7}
 pals_i=1
 clrs_i=1
 
-function print_header(y,num,strs)
-  str="tcc day "..num.."!"
-  strs=strs or {}
-
-  rectfill(8,0,117,7+(#strs*7),5)
-
-  print(str,hctr(str),y-0,0)
-  print(str,hctr(str),y-1,7)
-
-  for ci=1,#strs do
-    print(strs[ci],hctr(strs[ci]),y+(ci*7),0)
-    print(strs[ci],hctr(strs[ci]),y+((ci*7)-1),7)
-  end
-end
-
---https://pico-8.fandom.com/wiki/Centering_Text
-function hctr(s)
-  return 64-#s*2
-end
-
-function vctr(s)
-  return 61
-end
-
 function draw_polar()
   y1=cy-(64/smod)+2
   y2=((max_y/(2*smod))-1)
@@ -151,7 +127,6 @@ end
 ------------------
 function _init()
   cls()
-  printh('')
 end
 
 function _draw()
@@ -163,13 +138,7 @@ function _draw()
     --print(stat(7),0,0,7)
   end
 
-  print_header(2,5,
-    {
-      "z:reset/cycle size,x:exit",
-      "\139:f/2 \145:f*2 \148:p+5 \131:p-5"
-    }
-  )
-  --printh('fmod:'..fmod..',pmod:'..pmod)
+  print("5",124,122,7)
 end
 
 function _update()
