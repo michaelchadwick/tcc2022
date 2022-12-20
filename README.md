@@ -6,6 +6,8 @@ Tiny Code Christmas 2022
 
 I'm planning on doing each day's entry in [PICO-8](https://lexaloffle.com/pico-8.php), but I might use [TIC-80](https://tic80.com), as well.
 
+The index of web exports can be found [here](https://neb.host/games/tcc/2022)
+
 ## Day 1: Making Shapes (DONE)
 
 Create a Christmas scene with simple shapes, like rectangles, circles, and lines.
