@@ -10,17 +10,28 @@ p_offset = 0
 effect = 0
 dir = 128
 
-function print_msg()
-  rectfill(19,1,108,22,5)
+function print_header(y,num,strs)
+  str="tcc day "..num.."!"
+  strs=strs or {}
 
-  print("hello tcc day 3!",33,3,0)
-  print("hello tcc day 3!",32,2,7)
+  rectfill(8,0,117,7+(#strs*7),5)
 
-  print("z: chg fx, x: exit",28,10,0)
-  print("z: chg fx, x: exit",27,9,7)
+  print(str,hctr(str),y-0,0)
+  print(str,hctr(str),y-1,7)
 
-  print("< / >: chg rainbow dir",21,17,0)
-  print("< / >: chg rainbow dir",20,16,7)
+  for ci=1,#strs do
+    print(strs[ci],hctr(strs[ci]),y+(ci*7),0)
+    print(strs[ci],hctr(strs[ci]),y+((ci*7)-1),7)
+  end
+end
+
+--https://pico-8.fandom.com/wiki/Centering_Text
+function hctr(s)
+  return 64-#s*2
+end
+
+function vctr(s)
+  return 61
 end
 
 function draw_rainbow()
@@ -78,7 +89,12 @@ end
 
 function _draw()
   draw_effect()
-  print_msg()
+  print_header(2,3,
+    {
+      "z: chg fx, x: exit",
+      "< / >: chg rainbow dir"
+    }
+  )
 end
 
 function _update60()

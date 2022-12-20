@@ -5,6 +5,30 @@ __lua__
 --day 1: making shapes
 --neb:https://neb.host/games/tcc/2022
 
+function print_header(y,num,strs)
+  str="tcc day "..num.."!"
+  strs=strs or {}
+
+  rectfill(8,0,117,7+(#strs*7),5)
+
+  print(str,hctr(str),y-0,0)
+  print(str,hctr(str),y-1,7)
+
+  for ci=1,#strs do
+    print(strs[ci],hctr(strs[ci]),y+(ci*7),0)
+    print(strs[ci],hctr(strs[ci]),y+((ci*7)-1),7)
+  end
+end
+
+--https://pico-8.fandom.com/wiki/Centering_Text
+function hctr(s)
+  return 64-#s*2
+end
+
+function vctr(s)
+  return 61
+end
+
 function draw_grnd()
   rectfill(0,110,160,160,3)
 end
@@ -74,13 +98,12 @@ end
 ------------------
 function _init()
   cls()
-  print("hello tcc day 1!",32,0,12)
-  print("press z/x to exit",30,6,12)
 end
 
 function _draw()
   draw_grnd()
   draw_tree()
+  print_header(2,1,{"press z/x to exit"})
 end
 
 function _update()

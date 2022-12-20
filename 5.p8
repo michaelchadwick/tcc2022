@@ -30,17 +30,28 @@ pal4={0,7}
 pals_i=1
 clrs_i=1
 
-function print_hello(x,y,num)
-  rectfill(8,0,117,21,5)
+function print_header(y,num,strs)
+  str="tcc day "..num.."!"
+  strs=strs or {}
 
-  print("tcc day "..num.."!",x-0,y-0,0)
-  print("tcc day "..num.."!",x-1,y-1,7)
+  rectfill(8,0,117,7+(#strs*7),5)
 
-  print("z:reset/cycle size,x:exit",x-32,y+7,0)
-  print("z:reset/cycle size,x:exit",x-31,y+6,7)
+  print(str,hctr(str),y-0,0)
+  print(str,hctr(str),y-1,7)
 
-  print("\139:f/2 \145:f*2 \148:p+5 \131:p-5",x-36,y+14,0)
-  print("\139:f/2 \145:f*2 \148:p+5 \131:p-5",x-35,y+13,7)
+  for ci=1,#strs do
+    print(strs[ci],hctr(strs[ci]),y+(ci*7),0)
+    print(strs[ci],hctr(strs[ci]),y+((ci*7)-1),7)
+  end
+end
+
+--https://pico-8.fandom.com/wiki/Centering_Text
+function hctr(s)
+  return 64-#s*2
+end
+
+function vctr(s)
+  return 61
 end
 
 function draw_polar()
@@ -126,6 +137,7 @@ function check_btns()
     cls(1)
     stop("have a nice day!")
   end
+end
 
 function reset()
   cls()
@@ -151,7 +163,12 @@ function _draw()
     --print(stat(7),0,0,7)
   end
 
-  print_hello(45,2,5)
+  print_header(2,5,
+    {
+      "z:reset/cycle size,x:exit",
+      "\139:f/2 \145:f*2 \148:p+5 \131:p-5"
+    }
+  )
   --printh('fmod:'..fmod..',pmod:'..pmod)
 end
 
