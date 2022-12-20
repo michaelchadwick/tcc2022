@@ -1,14 +1,9 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
--- tiny code christmas
--- day 2: snow time() like the present
-
-function _init()
-  cls()
-  print("hello tcc day 2!",32,0,12)
-  print("press z/x to exit",30,6,12)
-end
+--tiny code christmas
+--day 2: snow time() like the present
+--neb:https://neb.host/games/tcc/2022
 
 function draw_grnd()
   rectfill(0,110,160,160,3)
@@ -104,6 +99,15 @@ function remove_snow()
       end
     end
   end
+end
+
+------------------
+-- pico8 _funcs --
+------------------
+function _init()
+  cls()
+  print("hello tcc day 2!",32,0,12)
+  print("press z/x to exit",30,6,12)
 end
 
 function _draw()

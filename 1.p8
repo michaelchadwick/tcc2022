@@ -1,14 +1,9 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
--- tiny code christmas
--- day 1: making shapes
-
-function _init()
-  cls()
-  print("hello tcc day 1!",32,0,12)
-  print("press z/x to exit",30,6,12)
-end
+--tiny code christmas
+--day 1: making shapes
+--neb:https://neb.host/games/tcc/2022
 
 function draw_grnd()
   rectfill(0,110,160,160,3)
@@ -72,6 +67,15 @@ function draw_tree()
   spr(1,68,34,1,1,true)
 
   spr(10,60,26)
+end
+
+------------------
+-- pico8 _funcs --
+------------------
+function _init()
+  cls()
+  print("hello tcc day 1!",32,0,12)
+  print("press z/x to exit",30,6,12)
 end
 
 function _draw()

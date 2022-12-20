@@ -1,18 +1,14 @@
 pico-8 cartridge // http://www.pico-8.com
 version 39
 __lua__
--- tiny code christmas
--- day 3: little by little
+--tiny code christmas
+--day 3: little by little
+--neb:https://neb.host/games/tcc/2022
 
 clrs = {8,9,10,11,12,13,14,15}
 p_offset = 0
 effect = 0
 dir = 128
-
-function _init()
-  cls(1)
-  last = time()
-end
 
 function print_msg()
   rectfill(19,1,108,22,5)
@@ -70,6 +66,14 @@ function switch_effect()
   else
     effect = 0
   end
+end
+
+------------------
+-- pico8 _funcs --
+------------------
+function _init()
+  cls(1)
+  last = time()
 end
 
 function _draw()
