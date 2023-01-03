@@ -5,13 +5,6 @@ __lua__
 --day 8: round and round
 --neb:https://neb.host/games/tcc/2022
 
-max_y=128
-max_x=128
-cy=0
-cx=0
-clrs={8,9,10,11,12,13,14,15}
-clr_index=1
-
 function draw_gradient()
   map(0,0,0,0,26,126)
 end
@@ -40,35 +33,11 @@ function draw_circle()
       15  --color
     )
   end
-  
+
   for i=0,16348 do
     x=i%128
     y=i/128
     --pset(x,y,pget(x+1,y))
-  end
-end
-
-function check_btns()
-  --left
-  if btnp(0) then
-
-  end
-  --right
-  if btnp(1) then
-
-  end
-  --up
-  if btnp(2) then
-
-  end
-  --down
-  if btnp(3) then
-
-  end
-  --z/x
-  if btnp(4) or btnp(5) then
-    cls(1)
-    stop("have a nice day!")
   end
 end
 
